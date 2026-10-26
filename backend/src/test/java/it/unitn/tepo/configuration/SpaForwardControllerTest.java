@@ -23,6 +23,34 @@ class SpaForwardControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(forwardedUrl("/index.html"));
 
+        mockMvc.perform(get("/map"))
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/index.html"));
+
+        mockMvc.perform(get("/buildings"))
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/index.html"));
+
+        mockMvc.perform(get("/interventions"))
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/index.html"));
+
+        mockMvc.perform(get("/result"))
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/index.html"));
+
+        mockMvc.perform(get("/compare"))
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/index.html"));
+
+        mockMvc.perform(get("/sensitivity"))
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/index.html"));
+
+        mockMvc.perform(get("/import"))
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/index.html"));
+
         mockMvc.perform(get("/edifici"))
                 .andExpect(status().isOk())
                 .andExpect(forwardedUrl("/index.html"));
