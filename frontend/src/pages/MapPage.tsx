@@ -66,21 +66,31 @@ const STATE_PATH: Record<
   'not-evaluated': { fillOpacity: 0.05, weight: 1.5, dashArray: '1 4' }
 };
 
-// Tile: OpenStreetMap standard per il registro Relazione (dettagliato su Trento, stesso del frontend precedente)
-// e CartoDB Dark Matter per il registro Sala operativa (dark mode basato su dati OSM, fino a zoom 19).
-const TILES: Record<Theme, { url: string; attribution: string; label: string }> = {
+const CARTO_KEY = (import.meta as unknown as { env?: Record<string, string> }).env?.VITE_CARTO_API_KEY;
+
+// Tile: OpenStreetMap standard per il registro Relazione (dettagliato su Trento)
+// e OpenStreetMap Dark (o CartoDB se fornita API key) per il registro Sala operativa.
+const TILES: Record<Theme, { url: string; attribution: string; label: string; className?: string }> = {
   light: {
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     label: 'OpenStreetMap standard'
   },
-  dark: {
-    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    label: 'CartoDB Dark Matter'
-  }
+  dark: CARTO_KEY
+    ? {
+        url: `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        label: 'CartoDB Dark Matter'
+      }
+    : {
+        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        label: 'OpenStreetMap Dark',
+        className: 'map-tiles--dark'
+      }
 };
 
 function MapController({ selectedBuilding }: { selectedBuilding: Building | null }) {
@@ -307,6 +317,7 @@ export default function MapPage() {
                       key={`tile-${theme}`}
                       url={tiles.url}
                       attribution={tiles.attribution}
+                      className={tiles.className}
                       maxZoom={19}
                     />
                     <MapController selectedBuilding={selectedRow?.building ?? null} />

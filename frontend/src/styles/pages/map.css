@@ -33,6 +33,13 @@
   font-size: var(--fs-xs);
 }
 
+/* Tile in dark mode con filtro OpenStreetMap (funziona senza API key su qualunque dispositivo) */
+.map-canvas .map-tiles--dark,
+.map-canvas .leaflet-tile-pane .map-tiles--dark,
+.map-canvas img.map-tiles--dark {
+  filter: brightness(0.65) invert(1) contrast(2.8) hue-rotate(200deg) saturate(0.35);
+}
+
 .map-canvas .leaflet-control-attribution {
   font-size: 9px;
   color: var(--text-secondary);
