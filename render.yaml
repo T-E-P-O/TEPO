@@ -9,6 +9,8 @@ services:
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: demo
+      - key: DATABASE_URL
+        sync: false
       - key: DB_URL
         sync: false
       - key: DB_USERNAME
