@@ -1,0 +1,365 @@
+/* TEPO — Scenario Builder: stili specifici della pagina. */
+
+.scenario-workbench {
+  align-items: start;
+}
+
+.scenario-left,
+.scenario-right {
+  min-width: 0;
+}
+
+.scenario-right {
+  gap: var(--space-3);
+}
+
+/* Vincoli applicati (sola lettura) */
+
+.scenario-constraints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.scenario-constraint-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.scenario-constraint-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.scenario-constraint-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scenario-constraint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: var(--surface-sunken);
+  border: 1px dashed var(--rule-strong);
+}
+
+.scenario-constraint .chip {
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+}
+
+.scenario-constraint__join {
+  font-family: var(--font-num);
+  color: var(--accent-ink);
+}
+
+/* Elenco candidati */
+
+.scenario-ledger {
+  min-width: 0;
+}
+
+.scenario-ledger .table-wrap {
+  border: 0;
+}
+
+.scenario-ledger__search {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.scenario-ledger__state {
+  padding: var(--space-4);
+}
+
+.scenario-ledger__ai {
+  padding: var(--space-3) var(--space-4) 0;
+}
+
+.scenario-option {
+  display: block;
+  min-width: 0;
+}
+
+.scenario-option__name {
+  display: block;
+  font-weight: 500;
+}
+
+.scenario-option__meta {
+  display: block;
+  margin-top: 1px;
+  font-family: var(--font-num);
+  font-size: var(--fs-micro);
+  color: var(--text-tertiary);
+}
+
+.scenario-ledger td .badge {
+  margin-top: var(--space-1);
+}
+
+/* Evidenziazione AI solo visiva: la selezione non cambia, il badge testuale basta. */
+.scenario-ledger .table tbody tr.is-ai-excluded {
+  background: var(--warn-bg);
+}
+
+.scenario-ledger .table tbody tr.is-ai-excluded td:first-child {
+  box-shadow: inset 2px 0 0 var(--warn);
+}
+
+/* La selezione resta il segnale primario; tinta piena su ogni riga sarebbe una parete rosa. */
+.scenario-ledger .table tbody tr.is-selected {
+  background: var(--surface-sunken);
+}
+
+.scenario-ledger .table tbody tr.is-selected td:first-child {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.scenario-ledger .table tbody tr.is-ai-excluded.is-selected {
+  background: var(--warn-bg);
+}
+
+.scenario-th-unit {
+  display: block;
+  font-family: var(--font-num);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-tertiary);
+}
+
+/* Riepilogo fisso: totale e pulsanti */
+
+.scenario-dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface-panel);
+  border: 1px solid var(--rule-strong);
+  border-top: 3px solid var(--accent);
+}
+
+.scenario-dock__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.scenario-dock__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+
+.scenario-dock__count {
+  font-family: var(--font-num);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.scenario-dock__figures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.scenario-dock__figures div {
+  min-width: 0;
+}
+
+.scenario-dock__figures dt {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.scenario-dock__figures dd {
+  margin: 2px 0 0;
+  font-family: var(--font-num);
+  font-size: var(--fs-md);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.scenario-dock__validation {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.scenario-dock__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+/* Nota AI (memo formale, non chat) */
+
+.ai-memo {
+  border-left: 3px dashed var(--accent);
+}
+
+.ai-memo__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.ai-memo__notes {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+}
+
+.ai-memo__notes ul {
+  margin: var(--space-1) 0 0;
+  padding-left: 1.1em;
+}
+
+.ai-memo__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.ai-proposal {
+  padding: var(--space-4);
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule-strong);
+  border-top: 2px solid var(--text-primary);
+}
+
+.ai-proposal__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.ai-proposal__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+
+.ai-proposal__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-3) 0 0;
+}
+
+.ai-proposal__fact {
+  min-width: 0;
+}
+
+.ai-proposal__fact dt {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.ai-proposal__fact dd {
+  margin: 2px 0 0;
+  font-family: var(--font-num);
+  font-size: var(--fs-md);
+  font-variant-numeric: tabular-nums;
+}
+
+.ai-proposal__explanation {
+  margin-top: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: var(--lh-normal);
+}
+
+.ai-proposal__section {
+  margin-top: var(--space-3);
+}
+
+.ai-proposal__section h4 {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.ai-proposal__section ul,
+.ai-proposal__list {
+  margin: var(--space-1) 0 0;
+  padding-left: 1.1em;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.ai-proposal .notice {
+  margin-top: var(--space-3);
+}
+
+.ai-proposal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+/* Responsive */
+
+@media (max-width: 1200px) {
+  /* Con una sola colonna l'elenco precede il riepilogo: niente posizione fissa. */
+  .scenario-dock {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .scenario-dock__figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scenario-dock__actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+@media print {
+  .scenario-dock {
+    position: static;
+  }
+}

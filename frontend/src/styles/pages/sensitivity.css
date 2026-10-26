@@ -1,0 +1,183 @@
+/* TEPO — Pagina Analisi di sensibilità: form, candidati, grafici e stabilità. */
+
+.sensitivity-page .form-grid {
+  align-items: start;
+}
+
+/* Sintesi sweep: l'obiettivo testuale (Risparmio energetico/economico) si adatta senza uscire dal box */
+.sensitivity-page .stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.sensitivity-page .stat:first-child .stat__value {
+  font-family: var(--font-ui);
+  font-size: clamp(14px, 1.25vw, 17px);
+  font-weight: 600;
+  white-space: normal;
+  line-height: 1.25;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Candidati */
+
+.sensitivity-candidates {
+  max-height: 340px;
+  overflow-y: auto;
+  border: 1px solid var(--rule);
+  background: var(--surface-panel);
+}
+
+.sensitivity-candidates .table {
+  border-collapse: collapse;
+}
+
+.sensitivity-candidates .table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.sensitivity-candidates tbody tr {
+  cursor: pointer;
+}
+
+/* Selezione leggibile senza una parete di tinta accento. */
+.sensitivity-candidates .table tbody tr.is-selected {
+  background: var(--surface-sunken);
+}
+
+.sensitivity-candidates .table tbody tr.is-selected td:first-child {
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.sensitivity-candidates__foot {
+  margin-top: var(--space-3);
+  font-size: var(--fs-micro);
+  line-height: 1.45;
+  color: var(--text-tertiary);
+}
+
+/* Conteggio interventi nella tabella risultati */
+
+.sensitivity-count {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 96px;
+}
+
+.sensitivity-count__track {
+  display: inline-block;
+  width: 64px;
+  height: 7px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+}
+
+.sensitivity-count__fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+/* Intestazioni di riga nelle tabelle */
+
+.sensitivity-page .table tbody th {
+  padding: 5px 9px;
+  font-family: var(--font-num);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sensitivity-page .table tbody th.num {
+  text-align: right;
+}
+
+/* Stabilità delle selezioni */
+
+.sensitivity-stability {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4) var(--space-5);
+}
+
+.sensitivity-stability__group {
+  min-width: 0;
+}
+
+.sensitivity-stability__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sensitivity-stability__group:nth-child(1) .sensitivity-stability__title {
+  border-bottom-color: var(--ok);
+}
+
+.sensitivity-stability__group:nth-child(2) .sensitivity-stability__title {
+  border-bottom-color: var(--warn);
+}
+
+.sensitivity-stability__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--fs-sm);
+}
+
+.sensitivity-stability__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 3px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sensitivity-stability__item:last-child {
+  border-bottom: 0;
+}
+
+.sensitivity-stability__name {
+  min-width: 0;
+  color: var(--text-primary);
+}
+
+.sensitivity-stability__id {
+  flex-shrink: 0;
+  font-family: var(--font-num);
+  font-size: var(--fs-micro);
+  color: var(--text-tertiary);
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+  .sensitivity-candidates {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 720px) {
+  .sensitivity-stability {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sensitivity-count__track {
+    width: 44px;
+  }
+}
