@@ -1,45 +1,23 @@
 services:
   - type: web
-    name: tepo-backend
+    name: tepobozza
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/scenarios/ping
     envVars:
-      - key: DB_URL
-        fromDatabase:
-          name: tepo-db
-          property: connectionString
-      - key: DB_USERNAME
-        fromDatabase:
-          name: tepo-db
-          property: user
-      - key: DB_PASSWORD
-        fromDatabase:
-          name: tepo-db
-          property: password
       - key: SPRING_PROFILES_ACTIVE
         value: demo
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
       - key: TEPO_SOLVER_PRIMARY_TIMEOUT
         value: "10"
       - key: TEPO_SOLVER_SECONDARY_TIMEOUT
         value: "3"
       - key: TEPO_SOLVER_LEX_TIMEOUT
         value: "1"
-
-  - type: web
-    name: tepo-frontend
-    runtime: docker
-    dockerfilePath: ./frontend/Dockerfile
-    dockerContext: ./frontend
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: tepo-backend
-          property: host
-
-databases:
-  - name: tepo-db
-    databaseName: tepo
-    user: tepo
-    plan: free
