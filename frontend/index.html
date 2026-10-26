@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="TEPO — Trento Energy Portfolio Optimizer. Sistema di supporto alla decisione per portafogli di efficientamento energetico sugli edifici comunali. Dataset DEMO sintetico."
+    />
+    <meta name="theme-color" content="#17191c" />
+    <title>TEPO — Trento Energy Portfolio Optimizer</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo/logo-mark-32.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="/logo/logo-mark-128.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/logo/logo-mark-512.png" />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/titillium-web-latin-700-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script>
+      // Imposta il registro prima del bundle: nessun FOUC.
+      (function () {
+        try {
+          var stored = window.localStorage.getItem("tepo:theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (error) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
