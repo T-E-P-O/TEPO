@@ -34,7 +34,7 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
 
     @Override
     public int getOrder() {
-        return Ordered.LOWEST_PRECEDENCE;
+        return Ordered.HIGHEST_PRECEDENCE + 5;
     }
 
     @Override
@@ -85,15 +85,10 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
                 String user = URLDecoder.decode(parts[0], StandardCharsets.UTF_8);
                 String pass = parts.length > 1 ? URLDecoder.decode(parts[1], StandardCharsets.UTF_8) : "";
 
-                String existingUser = environment != null ? environment.getProperty("DB_USERNAME") : null;
-                if (existingUser == null || existingUser.isBlank() || "tepo".equals(existingUser)) {
-                    result.put(SPRING_DATASOURCE_USERNAME, user);
-                }
-
-                String existingPass = environment != null ? environment.getProperty("DB_PASSWORD") : null;
-                if (existingPass == null || existingPass.isBlank() || "tepo".equals(existingPass)) {
-                    result.put(SPRING_DATASOURCE_PASSWORD, pass);
-                }
+                result.put(SPRING_DATASOURCE_USERNAME, user);
+                result.put("DB_USERNAME", user);
+                result.put(SPRING_DATASOURCE_PASSWORD, pass);
+                result.put("DB_PASSWORD", pass);
             }
 
             if (host != null) {
@@ -108,6 +103,7 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
                 }
 
                 result.put(SPRING_DATASOURCE_URL, jdbcUrl.toString());
+                result.put("DB_URL", jdbcUrl.toString());
             }
         } catch (Exception e) {
             System.err.println("[DatabaseUrlEnvironmentPostProcessor] Warning: Could not parse database URL: " + e.getMessage());

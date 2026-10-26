@@ -23,7 +23,9 @@ class DatabaseUrlEnvironmentPostProcessorTest {
                 "jdbc:postgresql://ep-cool-fog-12345.eu-central-1.aws.neon.tech:5432/neondb?sslmode=require"
         );
         assertThat(parsed).containsEntry(DatabaseUrlEnvironmentPostProcessor.SPRING_DATASOURCE_USERNAME, "mirco_user");
+        assertThat(parsed).containsEntry("DB_USERNAME", "mirco_user");
         assertThat(parsed).containsEntry(DatabaseUrlEnvironmentPostProcessor.SPRING_DATASOURCE_PASSWORD, "super_secret");
+        assertThat(parsed).containsEntry("DB_PASSWORD", "super_secret");
     }
 
     @Test
