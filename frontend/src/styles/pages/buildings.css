@@ -1,0 +1,51 @@
+/* TEPO — Pagina Edifici: stili specifici del catalogo. */
+
+.buildings-filters {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) minmax(190px, 1fr) auto;
+  align-items: end;
+  gap: var(--space-3) var(--space-4);
+}
+
+.buildings-count {
+  align-self: end;
+  padding-bottom: 8px;
+  font-family: var(--font-num);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.buildings-state {
+  padding: var(--space-4);
+}
+
+.buildings-name {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.buildings-municipality {
+  display: block;
+  margin-top: 1px;
+  font-size: var(--fs-micro);
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 900px) {
+  .buildings-filters {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .buildings-count {
+    grid-column: 1 / -1;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .buildings-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

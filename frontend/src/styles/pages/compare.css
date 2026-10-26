@@ -1,0 +1,185 @@
+/* TEPO — Pagina Confronto scenari: solo classi specifiche della pagina. */
+
+.compare-hinge {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 0.72fr) minmax(0, 1fr);
+  background: var(--surface-panel);
+  border: 1px solid var(--rule);
+}
+
+.compare-hinge__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+}
+
+.compare-hinge__side--a {
+  border-right: 1px solid var(--rule);
+}
+
+.compare-hinge__side--b {
+  border-left: 1px solid var(--rule);
+}
+
+.compare-hinge__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.compare-hinge__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--on-ink-solid);
+  background: var(--ink-solid);
+}
+
+.compare-hinge__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.compare-hinge__meta {
+  margin-top: 2px;
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.compare-hinge__facts {
+  font-size: var(--fs-xs);
+}
+
+/* Colonna centrale: spine dei delta */
+
+.compare-hinge__spine {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-4) var(--space-3);
+  background: var(--surface-sunken);
+}
+
+.compare-hinge__spine-title {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-tertiary);
+}
+
+.compare-spine {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-spine__row {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: var(--space-2) 0;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+
+.compare-spine__row:last-child {
+  border-bottom: 0;
+}
+
+.compare-spine__label {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.compare-spine__delta {
+  font-family: var(--font-num);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.compare-spine__delta.is-up {
+  color: var(--accent-ink);
+}
+
+.compare-spine__delta.is-down {
+  color: var(--text-primary);
+}
+
+.compare-spine__delta.is-zero {
+  color: var(--text-tertiary);
+}
+
+/* Responsive */
+
+@media (max-width: 1080px) {
+  .compare-hinge {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .compare-hinge__side--a {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .compare-hinge__side--b {
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .compare-spine {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-2);
+  }
+
+  .compare-spine__row {
+    padding: var(--space-2);
+    border: 1px solid var(--rule);
+    background: var(--surface-panel);
+  }
+}
+
+@media (max-width: 560px) {
+  .compare-spine {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Stampa */
+
+@media print {
+  .page .page-head__actions {
+    display: none !important;
+  }
+
+  .compare-hinge {
+    break-inside: avoid;
+  }
+
+  .compare-hinge__side,
+  .compare-hinge__spine {
+    break-inside: avoid;
+  }
+}
