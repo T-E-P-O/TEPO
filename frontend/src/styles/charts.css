@@ -1,0 +1,158 @@
+/* Grafici e viste dati: SVG fatti in casa, colori dai token, nessuna dipendenza. */
+
+/* Lista a barre orizzontale in HTML per l'accessibilità */
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bars__row {
+  display: grid;
+  grid-template-columns: minmax(110px, 190px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  font-size: var(--fs-xs);
+}
+
+.bars__label {
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bars__track {
+  position: relative;
+  height: 9px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+.bars__fill {
+  display: block;
+  height: 100%;
+  background: var(--chart-1);
+  min-width: 1px;
+}
+
+.bars__value {
+  font-family: var(--font-num);
+  font-size: 11px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  text-align: right;
+  min-width: 76px;
+}
+
+.stackbar__track {
+  display: flex;
+  height: 14px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+.stackbar__segment {
+  height: 100%;
+  min-width: 1px;
+}
+
+.stackbar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+
+.stackbar__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stackbar__swatch {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+}
+
+/* Mappa di calore */
+
+.heatmap-scroll {
+  overflow-x: auto;
+}
+
+.heatmap {
+  display: grid;
+  gap: 2px;
+  min-width: 520px;
+  align-items: center;
+}
+
+.heatmap__col {
+  font-family: var(--font-num);
+  font-size: 9px;
+  color: var(--text-tertiary);
+  text-align: center;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  justify-self: center;
+}
+
+.heatmap__row-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 6px;
+}
+
+.heatmap__cell {
+  height: 15px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+}
+
+.heatmap__cell--on {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.heatmap__cell--always {
+  background: var(--ok);
+  border-color: var(--ok);
+}
+
+.heatmap__cell--swing {
+  background: var(--warn);
+  border-color: var(--warn);
+}
+
+.heatmap__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+
+.heatmap__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.heatmap__legend-swatch {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--rule);
+}
