@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: tepo-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: DB_URL
+        fromDatabase:
+          name: tepo-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: tepo-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: tepo-db
+          property: password
+      - key: SPRING_PROFILES_ACTIVE
+        value: demo
+      - key: TEPO_SOLVER_PRIMARY_TIMEOUT
+        value: "10"
+      - key: TEPO_SOLVER_SECONDARY_TIMEOUT
+        value: "3"
+      - key: TEPO_SOLVER_LEX_TIMEOUT
+        value: "1"
+
+  - type: web
+    name: tepo-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: tepo-backend
+          property: host
+
+databases:
+  - name: tepo-db
+    databaseName: tepo
+    user: tepo
+    plan: free
