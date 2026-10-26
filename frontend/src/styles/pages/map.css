@@ -1,0 +1,327 @@
+/* TEPO — Pagina Mappa degli edifici: planimetria, legenda, dettaglio. */
+
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+  min-width: 0;
+}
+
+.map-layout__side {
+  min-width: 0;
+}
+
+/* Planimetria */
+
+.map-canvas {
+  position: relative;
+  height: 560px;
+  min-height: 480px;
+  width: 100%;
+  background: var(--surface-sunken);
+  border-top: 1px solid var(--rule);
+}
+
+.map-canvas .leaflet-container,
+.map-canvas__leaflet {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 480px !important;
+  background: var(--surface-sunken);
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+}
+
+/* Tile in dark mode con filtro OpenStreetMap (funziona senza API key su qualunque dispositivo) */
+.map-canvas .map-tiles--dark,
+.map-canvas .leaflet-tile-pane .map-tiles--dark,
+.map-canvas img.map-tiles--dark {
+  filter: brightness(0.65) invert(1) contrast(2.8) hue-rotate(200deg) saturate(0.35);
+}
+
+.map-canvas .leaflet-control-attribution {
+  font-size: 9px;
+  color: var(--text-secondary);
+  background: var(--surface-panel);
+}
+
+.map-canvas .leaflet-control-attribution a {
+  color: var(--accent-ink);
+}
+
+.map-canvas .leaflet-bar a {
+  color: var(--text-primary);
+  background: var(--surface-panel);
+  border-bottom-color: var(--rule);
+  border-radius: 0;
+}
+
+.map-canvas .leaflet-bar a:hover {
+  background: var(--surface-sunken);
+  color: var(--accent-ink);
+}
+
+.map-canvas > .skeleton-group,
+.map-canvas > .empty {
+  margin: var(--space-4);
+}
+
+/* Ricerca */
+
+.map-search {
+  position: relative;
+  display: block;
+}
+
+.map-search__icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  z-index: 1;
+  display: inline-flex;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.map-search__input {
+  padding-left: 32px;
+}
+
+.map-list__notice {
+  margin-top: var(--space-3);
+}
+
+/* Elenco edifici */
+
+.map-list {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 460px;
+  overflow-y: auto;
+  border-top: 1px solid var(--rule);
+}
+
+.map-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 8px 10px 8px 8px;
+  text-align: left;
+  color: var(--text-primary);
+  background: transparent;
+  border: 0;
+  border-left: 2px solid transparent;
+  border-bottom: 1px solid var(--rule);
+  transition: background-color var(--dur-1) var(--ease);
+}
+
+.map-list__item:hover {
+  background: var(--surface-sunken);
+}
+
+.map-list__item.is-selected {
+  background: var(--accent-quiet);
+  border-left-color: var(--accent);
+}
+
+.map-list__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.map-list__meta {
+  font-size: var(--fs-micro);
+  line-height: 1.4;
+  color: var(--text-tertiary);
+}
+
+.map-list__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+/* Legenda */
+
+.map-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-3) var(--space-4);
+}
+
+.map-legend__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-width: 0;
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
+.map-legend__item strong {
+  display: block;
+  font-weight: 600;
+}
+
+.map-legend__shape {
+  display: block;
+  color: var(--text-tertiary);
+  font-size: var(--fs-micro);
+}
+
+.map-legend__swatch {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  margin-top: 1px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.map-legend__swatch--selected {
+  background: var(--ok);
+  border-color: var(--ok);
+}
+
+.map-legend__swatch--mixed {
+  background: var(--warn);
+  border-color: var(--warn);
+  border-style: dashed;
+}
+
+.map-legend__swatch--excluded {
+  background: transparent;
+  border-color: var(--crit);
+  border-style: dotted;
+}
+
+.map-legend__swatch--not-evaluated {
+  background: transparent;
+  border-color: var(--rule-control);
+  border-style: dotted;
+}
+
+.map-legend__note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-micro);
+  line-height: 1.45;
+  color: var(--text-tertiary);
+}
+
+.map-legend__size {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--text-secondary);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* Dettaglio edificio */
+
+.map-details__dl {
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Popup Leaflet integrato con lo stile dell'applicazione */
+
+.leaflet-popup-content-wrapper {
+  background: var(--surface-panel);
+  color: var(--text-primary);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm, 2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-tip {
+  background: var(--surface-panel);
+}
+
+.leaflet-popup-close-button {
+  color: var(--text-secondary) !important;
+}
+
+.map-popup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 190px;
+  max-width: 260px;
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.map-popup__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+.map-popup__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--fs-micro);
+  color: var(--text-secondary);
+}
+
+.map-popup__status {
+  margin-top: 2px;
+}
+
+.map-popup__actions {
+  margin-top: var(--space-1);
+}
+
+/* Responsive */
+
+@media (max-width: 1200px) {
+  .map-layout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+  }
+}
+
+@media (max-width: 1000px) {
+  .map-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .map-canvas {
+    height: 52vh;
+  }
+}
+
+@media (max-width: 720px) {
+  .map-canvas {
+    height: 42vh;
+    min-height: 280px;
+  }
+
+  .map-list {
+    max-height: 340px;
+  }
+}
