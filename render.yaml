@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: tepo
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/scenarios/ping
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: demo
+      - key: DATABASE_URL
+        sync: false
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: TEPO_SOLVER_PRIMARY_TIMEOUT
+        value: "10"
+      - key: TEPO_SOLVER_SECONDARY_TIMEOUT
+        value: "3"
+      - key: TEPO_SOLVER_LEX_TIMEOUT
+        value: "1"
