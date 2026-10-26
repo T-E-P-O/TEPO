@@ -50,6 +50,9 @@ if [ -n "$DB_URL" ]; then
   echo "Database URL configured: ${DB_URL}"
   if [ -n "$DB_USERNAME" ]; then
     echo "Database User: ${DB_USERNAME}"
+  else
+    echo "WARNING: DB_USERNAME is NOT set and was not in the database URL!"
+    echo "If using Neon, provide DB_USERNAME and DB_PASSWORD or the full connection string in DATABASE_URL."
   fi
 else
   echo "WARNING: Neither DB_URL nor DATABASE_URL is set!"
