@@ -1,0 +1,286 @@
+/* 12. Grafici */
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart text {
+  font-family: var(--font-num);
+  font-size: 10px;
+  fill: var(--chart-label);
+}
+
+.chart .chart__title {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--text-secondary);
+}
+
+.chart .chart__grid {
+  stroke: var(--chart-grid);
+  stroke-width: 1;
+}
+
+.chart .chart__axis {
+  stroke: var(--chart-axis);
+  stroke-width: 1;
+}
+
+.chart .chart__tick {
+  stroke: var(--chart-axis);
+  stroke-width: 1;
+}
+
+.chart .chart__line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chart .chart__line--b {
+  stroke-dasharray: 6 4;
+}
+
+.chart .chart__dot {
+  stroke: var(--surface-panel);
+  stroke-width: 1.5;
+}
+
+.chart .chart__annotation {
+  font-family: var(--font-ui);
+  font-size: 9.5px;
+  fill: var(--accent-ink);
+}
+
+.chart .chart__annotation-line {
+  stroke: var(--accent);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-2);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+
+.chart-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-legend__swatch {
+  width: 14px;
+  height: 3px;
+  background: var(--chart-1);
+  flex-shrink: 0;
+}
+
+.chart-legend__swatch--dashed {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--chart-2) 0 4px,
+    transparent 4px 7px
+  );
+}
+
+.chart-note {
+  margin-top: var(--space-2);
+  font-size: var(--fs-micro);
+  color: var(--text-tertiary);
+}
+
+.chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  padding: var(--space-4);
+  color: var(--text-tertiary);
+  font-size: var(--fs-sm);
+  border: 1px dashed var(--rule-strong);
+}
+
+/* Mappa di calore */
+
+.heatmap {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.heatmap__cell {
+  height: 16px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+}
+
+.heatmap__cell--on {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.heatmap__cell--always {
+  background: var(--ok);
+  border-color: var(--ok);
+}
+
+.heatmap__cell--swing {
+  background: var(--warn);
+  border-color: var(--warn);
+}
+
+.heatmap__row-label {
+  font-family: var(--font-num);
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 13. Liste, audit e dettagli */
+
+.dl {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  font-size: var(--fs-sm);
+}
+
+.dl dt {
+  color: var(--text-secondary);
+}
+
+.dl dd {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.audit-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-micro);
+  color: var(--text-tertiary);
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+}
+
+.audit-strip__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.audit-strip__label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.audit-strip__value {
+  font-family: var(--font-num);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline__item {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  align-items: baseline;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--fs-xs);
+}
+
+.timeline__item:last-child {
+  border-bottom: 0;
+}
+
+.timeline__time {
+  font-family: var(--font-num);
+  font-size: 10.5px;
+  color: var(--text-tertiary);
+}
+
+.timeline__main {
+  min-width: 0;
+  color: var(--text-secondary);
+}
+
+.timeline__meta {
+  font-family: var(--font-num);
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+
+.details {
+  border-top: 1px solid var(--rule);
+}
+
+.details > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  cursor: pointer;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  list-style: none;
+}
+
+.details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.details > summary::before {
+  content: "+";
+  font-family: var(--font-num);
+  color: var(--accent-ink);
+  width: 12px;
+}
+
+.details[open] > summary::before {
+  content: "−";
+}
+
+.details > summary:hover {
+  color: var(--text-primary);
+}
+
+/* Helper vari */
+
+.kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  font-family: var(--font-num);
+  font-size: 10px;
+  color: var(--text-secondary);
+  background: var(--surface-sunken);
+  border: 1px solid var(--rule);
+}
