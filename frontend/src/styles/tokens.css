@@ -1,0 +1,166 @@
+/* Token di design per Relazione e Sala operativa; compatibilità: Chrome/FF/Edge ≥100, Safari ≥15. */
+
+:root {
+  /* Materiale primitivo (chiaro) */
+  --paper-050: #fbfaf6;
+  --paper-100: #f3f1ea;
+  --paper-200: #e8e4d9;
+  --graphite-950: #0e1013;
+  --graphite-900: #15181c;
+  --ink-900: #17191c;
+  --ink-500: #4c525a;
+  --ink-400: #6c7178;
+  --porfido-700: #7a3324;
+  --porfido-600: #96412c;
+  --porfido-300: #e07a5f;
+  --petrol-700: #1f4e5a;
+  --petrol-300: #7fb8c2;
+
+  /* Semantica del registro chiaro */
+  color-scheme: light;
+
+  --surface-page: var(--paper-100);
+  --surface-panel: var(--paper-050);
+  --surface-sunken: var(--paper-200);
+  --surface-band: var(--ink-900);
+  --on-band: var(--paper-100);
+
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-500);
+  --text-tertiary: var(--ink-400);
+
+  --rule: #d5cfc0;
+  --rule-strong: #a9a28f;
+  --rule-control: #7f7a6b;
+
+  --accent: var(--porfido-600);
+  --accent-ink: var(--porfido-700);
+  --accent-quiet: #f2e1d9;
+  --on-accent: #ffffff;
+
+  --ink-solid: var(--ink-900);
+  --on-ink-solid: var(--paper-100);
+
+  --focus: var(--petrol-700);
+  --focus-width: 2px;
+  --focus-offset: 2px;
+
+  /* Stati */
+  --ok: #1f6b3f;
+  --ok-bg: #e7efe9;
+  --warn: #7a5a00;
+  --warn-bg: #f5eedc;
+  --crit: #a8231c;
+  --crit-bg: #f7e3e1;
+  --info: var(--petrol-700);
+  --info-bg: #e6eef0;
+  --neutral: var(--ink-500);
+
+  /* Serie dati */
+  --chart-1: var(--petrol-700);
+  --chart-2: var(--porfido-600);
+  --chart-grid: #e4dfd1;
+  --chart-axis: #a9a28f;
+  --chart-label: var(--ink-500);
+
+  /* Fascia */
+  --band-rule: rgba(243, 241, 234, 0.18);
+  --band-label: rgba(243, 241, 234, 0.72);
+  --band-control: rgba(243, 241, 234, 0.12);
+  --band-control-hover: rgba(243, 241, 234, 0.2);
+
+  /* Tipografia */
+  --font-display: "Titillium Web", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-ui: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  --font-num: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  --fs-micro: 10.5px;
+  --fs-xs: 11.5px;
+  --fs-sm: 12.5px;
+  --fs-base: 13.5px;
+  --fs-md: 15px;
+  --fs-lg: 17px;
+  --fs-xl: 21px;
+
+  --lh-tight: 1.12;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.65;
+
+  --tracking-tight: -0.01em;
+  --tracking-wide: 0.06em;
+  --tracking-wider: 0.12em;
+
+  /* Spaziatura (scala da 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Struttura */
+  --band-h: 60px;
+  --rail-w: 212px;
+  --page-max: 1460px;
+  --radius: 1px;
+  --radius-chip: 2px;
+
+  /* Movimento */
+  --dur-1: 90ms;
+  --dur-2: 160ms;
+  --dur-3: 240ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Registro scuro: Sala operativa */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --surface-page: var(--graphite-950);
+  --surface-panel: var(--graphite-900);
+  --surface-sunken: #101317;
+  --surface-band: #12151a;
+  --on-band: #e8e5de;
+
+  --text-primary: #e8e5de;
+  --text-secondary: #b4b9bf;
+  --text-tertiary: #8c9299;
+
+  --rule: #2a2f35;
+  --rule-strong: #3d444c;
+  --rule-control: #636c78;
+
+  --accent: var(--porfido-300);
+  --accent-ink: #f0a38d;
+  --accent-quiet: #3a211c;
+  --on-accent: #17191c;
+
+  --ink-solid: #e8e5de;
+  --on-ink-solid: #141719;
+
+  --focus: var(--petrol-300);
+
+  --ok: #6fbf8b;
+  --ok-bg: #16261c;
+  --warn: #e3a33c;
+  --warn-bg: #2c2412;
+  --crit: #f07a72;
+  --crit-bg: #331715;
+  --info: var(--petrol-300);
+  --info-bg: #14262b;
+  --neutral: #b4b9bf;
+
+  --chart-1: #7fb8c2;
+  --chart-2: #e07a5f;
+  --chart-grid: #242a30;
+  --chart-axis: #3d444c;
+  --chart-label: #b4b9bf;
+
+  --band-rule: rgba(232, 229, 222, 0.16);
+  --band-label: rgba(232, 229, 222, 0.7);
+  --band-control: rgba(232, 229, 222, 0.1);
+  --band-control-hover: rgba(232, 229, 222, 0.18);
+}
