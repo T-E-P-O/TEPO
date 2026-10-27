@@ -1,0 +1,1 @@
+org.springframework.boot.env.EnvironmentPostProcessor=it.unitn.tepo.configuration.DatabaseUrlEnvironmentPostProcessor
